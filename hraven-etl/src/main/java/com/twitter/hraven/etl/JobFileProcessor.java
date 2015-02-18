@@ -54,6 +54,8 @@ import org.apache.hadoop.hbase.client.Scan;
 import org.apache.hadoop.hbase.mapreduce.MultiTableOutputFormat;
 import org.apache.hadoop.hbase.mapreduce.TableInputFormat;
 import org.apache.hadoop.hbase.mapreduce.TableMapReduceUtil;
+import org.apache.hadoop.hbase.protobuf.ProtobufUtil;
+import org.apache.hadoop.hbase.protobuf.generated.ClientProtos;
 import org.apache.hadoop.hbase.util.Base64;
 import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.util.GenericOptionsParser;
@@ -632,10 +634,8 @@ public class JobFileProcessor extends Configured implements Tool {
   }
 
   static String convertScanToString(Scan scan) throws IOException {
-    ByteArrayOutputStream out = new ByteArrayOutputStream();
-    DataOutputStream dos = new DataOutputStream(out);
-    scan.write(dos);
-    return Base64.encodeBytes(out.toByteArray());
+    ClientProtos.Scan proto = ProtobufUtil.toScan(scan);
+    return Base64.encodeBytes(proto.toByteArray());
   }
  
   /**

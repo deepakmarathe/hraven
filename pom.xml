@@ -275,8 +275,9 @@
             </activation>
             <properties>
                 <hbase.version>0.98.4.2.2.0.0-2041-hadoop2</hbase.version>
-                <hadoop.version>2.0.0-cdh4.3.0</hadoop.version>
-                <hadoop.core.version>2.0.0-mr1-cdh4.3.0</hadoop.core.version>
+                <hdp.version>2.2.0.0-2041</hdp.version>
+                <hadoop.version>2.6.0.${hdp.version}</hadoop.version>
+                <hadoop.core.version>${hadoop.version}</hadoop.core.version>
                 <commons-logging.version>1.1.1</commons-logging.version>
                 <junit.version>4.8.1</junit.version>
                 <mockito-all.version>1.8.5</mockito-all.version>
